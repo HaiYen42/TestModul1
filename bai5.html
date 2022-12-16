@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .container {
+        text-align: center;
+      }
+      .table1 {
+        margin-top: 50px;
+        margin-left: 250px;
+      }
+      #edit {
+        background-color: orange;
+        color: white;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      #delete {
+        background-color: rgb(226, 43, 147);
+        color: white;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      #finished {
+        background-color: green;
+        color: white;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      #save {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QUẢN LÝ NHÂN VIÊN</h1>
+        <div class="add-todo">
+          <input id="valueInput" type="text" placeholder="Enter a Staff Name" />
+          <button id="save" onclick="addTodo()">Add</button> <br> <br>
+          <input id="valueEdit" type="text" />
+          <button id="edit" onclick="addEdit()" >Update</button> <br> <br>
+        </div>
+        <div class="table1">
+          <table cellpadding="4" style="width: 70%">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Staff Name</th>
+                <th>Update</th>
+                <th colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <!-- <tr>
+                  <td>1</td>
+                  <td>Name</td>
+                  <td><button id="edit">UPDATE</button></td>
+                  <td><button id="delete" onclick="deleteFunction()">DELETE</button></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <script>
+ let key;
+      let dataListTodo = JSON.parse(localStorage.getItem("listDataToDo"));
+      function renderListTodo(listData) {
+        let data = "";
+        for (let i = 0; i < listData.length; i++) {
+          data += `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${listData[i]}</td>
+                <td><button id="edit" onclick="editItem(${i})">UPDATE</button></td>
+                <td><button id="delete" class=delete onclick="deleteItem(${i})">DELETE</button></td>
+                </tr>
+        `;
+        }
+        document.getElementById("tbody").innerHTML = data;
+      }
+      renderListTodo(dataListTodo);
+      //CREAT
+      function addTodo() {
+        let valueInput = document.getElementById("valueInput").value;
+        let dataAdd = JSON.parse(localStorage.getItem("listDataToDo"));
+        if (dataAdd == null) {
+          dataAdd = [];
+          dataAdd.push(valueInput);
+          localStorage.setItem("listDataToDo", JSON.stringify(dataAdd));
+          renderListTodo(dataAdd)
+        } else {
+          dataAdd.push(valueInput);
+          localStorage.setItem("listDataToDo", JSON.stringify(dataAdd));
+          renderListTodo(dataAdd);
+        }
+      }
+      //DELETE
+      function deleteItem(i){
+       
+        let dataDelete=JSON.parse(localStorage.getItem("listDataToDo"));
+        dataDelete.splice(i,1);
+        localStorage.setItem("listDataToDo",JSON.stringify(dataDelete));
+        renderListTodo(dataDelete);
+      }
+      //UPDATE
+      function editItem(id) {
+    
+      dataEdit = JSON.parse(localStorage.getItem("listDataToDo"));
+      document.getElementById("valueEdit").value = dataEdit[id];
+      localStorage.setItem("listDataToDo",JSON.stringify(dataEdit));
+      localStorage.setItem("key",id);    
+}
+  function addEdit() {
+    dataEdit = JSON.parse(localStorage.getItem("listDataToDo"));
+    let key=localStorage.getItem("key");
+    dataEdit[key]=document.getElementById("valueEdit").value;
+    localStorage.setItem("listDataToDo",JSON.stringify(dataEdit));
+    renderListTodo(dataEdit);
+  }
+
+    </script>
+</body>
+</html>

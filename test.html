@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Bài 1
+    //   let str= "program";
+    //   let arr=str.split('');
+    //   console.log(arr);
+    //   let newArr=[];
+    //   for (let i = arr.length-1; i >=0; i--) {
+    //     newArr.push(arr[i])
+    //   }
+    //   console.log(newArr);
+    //   let newStr=newArr.join("")
+    //   console.log(newStr);
+
+    //Bài 2:
+        // let str= "this is A Test"; 
+        // function jsUcfirst(string) {
+        //  return string.charAt(0).toUpperCase() + string.slice(1);
+        //  }
+        // console.log(jsUcfirst(str)); 
+
+
+        //    Bài 3 
+        // let arr=[1,2,3,3,4,5,4,4,4,5,5]
+        // let newArr=[]
+        // for (let i = 0; i< arr.length; i++) {
+        //   if(newArr.indexOf(arr[i]) === -1)
+        //         newArr.push(arr[i])
+        // }
+        // console.log(newArr);
+
+        //    Bài 4
+        
+        let a=[1,5,4,6,7,2]
+        for (let i = 0; i < a.length; i++) {
+        }
+        console.log("Chuỗi ký tự ban đầu là: "+ a);
+        for (i = 0; i < a.length; i++) {
+            for (j = i; j < a.length; j++) {
+                if (a[i] > a[j]) {
+                    let temp = a[i];
+                    a[i] = a[j]
+                    a[j]  = temp
+                }
+            }
+        }
+        console.log("Chuỗi ký tự sau khi sắp xếp là: "+ a);
+        
+  
+        //Bài 5: Thầy đọc bài 5 ở mục bai5.html bên cạnh giúp em
+        //Bài 6:
+       
+
+    </script>
+</body>
+</html>
